@@ -24,7 +24,7 @@ All content—from personal profiles and work experience to education and skills
 
 A brief overview of the key files in this project:
 
-## 🚀 Setup and Installation
+## Setup and Installation
 
 Follow these steps to get the project running on your local machine.
 
