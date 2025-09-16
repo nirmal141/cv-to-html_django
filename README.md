@@ -37,8 +37,8 @@ Follow these steps to get the project running on your local machine.
 
 Clone this project to your local machine.
 ```bash
-git clone <your-repository-url>
-cd <your-project-directory-name>
+git clone https://github.com/nirmal141/cv-to-html_django.git
+cd cv_to_html
 ```
 
 ### 3. Create a virtual environment
