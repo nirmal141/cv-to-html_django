@@ -2,54 +2,101 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>{{ profile.full_name }}'s CV</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ profile.name }}'s Resume</title>
     <style>
-        /* Add some basic styling */
-        body { font-family: sans-serif; line-height: 1.6; }
-        h1, h2 { color: #333; }
-        .section { margin-bottom: 20px; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; max-width: 800px; margin: 40px auto; color: #333; line-height: 1.6; }
+        h1, h2, h3 { margin-top: 1.5em; margin-bottom: 0.5em; }
+        h1 { text-align: center; border-bottom: 2px solid #333; padding-bottom: 10px; }
+        h2 { border-bottom: 1px solid #ccc; padding-bottom: 5px; }
+        .header, .contact-info { text-align: center; }
+        .contact-info a { margin: 0 10px; color: #007bff; text-decoration: none; }
+        .contact-info a:hover { text-decoration: underline; }
+        .job, .school, .project { margin-bottom: 1.5em; }
+        .job-title { display: flex; justify-content: space-between; font-weight: bold; }
+        ul { padding-left: 20px; }
+        li { margin-bottom: 0.5em; }
+        .skills-grid { display: grid; grid-template-columns: 150px 1fr; gap: 5px; }
     </style>
 </head>
 <body>
-    <header>
-        <h1>{{ profile.full_name }}</h1>
-        <h2>{{ profile.job_title }}</h2>
-        <p>
-            {{ profile.email }} | {{ profile.phone }} |
-            <a href="{{ profile.linkedin_url }}">LinkedIn</a> |
-            <a href="{{ profile.github_url }}">GitHub</a>
-        </p>
+
+    <header class="header">
+        <h1>{{ profile.name }}</h1>
+        <div class="contact-info">
+            <span>{{ profile.location }}</span> |
+            <a href="mailto:{{ profile.email }}">{{ profile.email }}</a> |
+            <span>{{ profile.phone }}</span> |
+            <a href="{{ profile.portfolio }}">Portfolio</a> |
+            <a href="{{ profile.linkedin }}">LinkedIn</a> |
+            <a href="{{ profile.github }}">GitHub</a>
+        </div>
     </header>
 
-    <div class="section">
-        <h2>Summary</h2>
-        <p>{{ profile.summary }}</p>
-    </div>
-
-    <div class="section">
-        <h2>Experience</h2>
-        {% for exp in experiences %}
-            <h3>{{ exp.job_title }} at {{ exp.company }}</h3>
-            <p>{{ exp.start_date|date:"F Y" }} - {{ exp.end_date|date:"F Y"|default:"Present" }}</p>
-            <p>{{ exp.description|linebreaks }}</p>
-        {% endfor %}
-    </div>
-
-    <div class="section">
+    <section id="education">
         <h2>Education</h2>
-        {% for edu in educations %}
-            <h3>{{ edu.degree }}</h3>
-            <p>{{ edu.institution }} - {{ edu.graduation_year }}</p>
+        {% for edu in education %}
+        <div class="school">
+            <div class="job-title">
+                <span>{{ edu.degree }} | {{ edu.university }}</span>
+                <span>{{ edu.date }}</span>
+            </div>
+            <i>Coursework: {{ edu.courses|join:", " }}</i>
+        </div>
         {% endfor %}
-    </div>
+    </section>
 
-    <div class="section">
-        <h2>Skills</h2>
-        <ul>
-        {% for skill in skills %}
-            <li>{{ skill.name }}</li>
+    <section id="experience">
+        <h2>Experience</h2>
+        {% for job in experience %}
+        <div class="job">
+            <div class="job-title">
+                <span>{{ job.title }} | {{ job.company }}</span>
+                <span>{{ job.date }}</span>
+            </div>
+            <i>{{ job.location }}</i>
+            <ul>
+                {% for point in job.description %}
+                <li>{{ point }}</li>
+                {% endfor %}
+            </ul>
+        </div>
         {% endfor %}
+    </section>
+
+    <section id="skills">
+        <h2>Technical Skills</h2>
+        {% for category, skill_list in skills.items %}
+        <div class="skills-grid">
+            <strong>{{ category }}:</strong>
+            <span>{{ skill_list }}</span>
+        </div>
+        {% endfor %}
+    </section>
+
+    <section id="projects">
+        <h2>Projects</h2>
+        {% for project in projects %}
+        <div class="project">
+            <h3>{{ project.name }} {% if project.link %}(<a href="{{ project.link }}">GitHub</a>){% endif %}</h3>
+            <i>{{ project.tech }}</i>
+            <ul>
+                {% for point in project.description %}
+                <li>{{ point }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endfor %}
+    </section>
+
+    <section id="awards">
+        <h2>Awards & Extra-curriculars</h2>
+        <ul>
+            {% for award in awards %}
+            <li>{{ award }}</li>
+            {% endfor %}
         </ul>
-    </div>
+    </section>
+
 </body>
 </html>
