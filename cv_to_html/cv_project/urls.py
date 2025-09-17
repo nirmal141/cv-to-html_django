@@ -1,8 +1,10 @@
-# cv_project/urls.py
-from django.contrib import admin
-from django.urls import path, include # Make sure to import include
+"""
+Main URL configuration for cv_project.
+Simplified to only include CV app routes.
+"""
+
+from django.urls import path, include
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', include('cv.urls')), # Add this line
+    path('', include('cv.urls')),  # Include CV app URLs
 ]

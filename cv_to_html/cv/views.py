@@ -1,16 +1,15 @@
-# cv/views.py
 from django.shortcuts import render
 
 def resume_view(request):
-    # All resume data is stored in Python variables here
+    #  storing resume data in Python variables here
     profile = {
         'name': 'NIRMAL BOGHARA',
         'location': 'Brooklyn, NY',
         'email': 'nb3964@nyu.edu',
         'phone': '+1347-628-3769',
-        'portfolio': 'https://nirmal-aiswe.vercel.app', # Replace with your actual URL
-        'linkedin': 'https://www.linkedin.com/in/nirmal-boghara/',   # Replace with your actual URL
-        'github': 'https://github.com/nirmal141'        # Replace with your actual URL
+        'portfolio': 'https://nirmal-aiswe.vercel.app', 
+        'linkedin': 'https://www.linkedin.com/in/nirmal-boghara/',   
+        'github': 'https://github.com/nirmal141'       
     }
 
     education_list = [
