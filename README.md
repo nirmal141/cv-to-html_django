@@ -21,23 +21,29 @@ A simple Django web application that displays a professional CV/resume.
    pip install -r requirements.txt
    ```
 
-4. **Run database migrations:**
-   ```bash
-   python manage.py migrate
-   ```
-
-5. **Start the development server:**
+4. **Start the development server:**
    ```bash
    python manage.py runserver
    ```
 
-6. **View the CV:**
+5. **View your CV:**
    Open your browser and go to: http://127.0.0.1:8000/
 
 ## Project Structure
 
-- `cv/views.py` - Contains all the CV data and view logic
-- `cv/templates/cv/resume.html` - HTML template for the CV
-- `cv_project/settings.py` - Django settings
-- `manage.py` - Django management script
+```
+cv_to_html/
+├── manage.py                    # Django management script
+├── requirements.txt             # Python dependencies
+├── cv/
+│   ├── apps.py                 # App configuration
+│   ├── urls.py                 # URL routing
+│   ├── views.py                # CV data and view logic (EDIT THIS!)
+│   └── templates/cv/
+│       └── resume.html         # HTML template with styling
+└── cv_project/
+    ├── settings.py             # Minimal Django settings
+    ├── urls.py                 # Main URL configuration
+    └── wsgi.py                 # WSGI configuration for deployment
+```
 
